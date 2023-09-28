@@ -31,8 +31,8 @@ void	encrypt(int pid, unsigned char byte_to_send)
 		{
 			kill(pid, SIGUSR1);
 		}
-		--i;
 		usleep(100);
+		i--;
 	}
 }
 

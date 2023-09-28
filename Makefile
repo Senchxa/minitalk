@@ -49,4 +49,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all libft clean fclean bonus re client_bonus server_bonus client server
+.PHONY: all libft clean fclean re client server
