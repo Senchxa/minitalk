@@ -13,7 +13,7 @@
 #include "libft/libft.h"
 #include <signal.h>
 
-void	encrypt(int pid, char byte_to_send)
+/*void	encrypt(int pid, char byte_to_send)
 {
 	int				i;
 	char	temp;
@@ -34,7 +34,30 @@ void	encrypt(int pid, char byte_to_send)
 		usleep(420);
 		i--;
 	}
+}*/
+#include <signal.h>
+#include <unistd.h>
+
+void encrypt(int pid, char byte_to_send)
+{
+    int i = 7;
+
+    while (i >= 0)
+    {
+        int bit = (byte_to_send >> i) & 1;
+        if (bit == 0)
+        {
+            kill(pid, SIGUSR2);
+        }
+        else
+        {
+            kill(pid, SIGUSR1);
+        }
+        usleep(350);
+        i--;
+    }
 }
+
 
 int	main(int ac, char **av)
 {
