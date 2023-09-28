@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealgar-c <ealgar-c@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dnoll <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 14:57:56 by ealgar-c          #+#    #+#             */
-/*   Updated: 2023/05/11 17:14:08 by ealgar-c         ###   ########.fr       */
+/*   Created: 2023/09/25 12:50:16 by dnoll             #+#    #+#             */
+/*   Updated: 2023/09/28 12:56:11 by dnoll            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <stdarg.h>
 #include <unistd.h>

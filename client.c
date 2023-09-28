@@ -6,50 +6,55 @@
 /*   By: dnoll <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:24:30 by dnoll             #+#    #+#             */
-/*   Updated: 2023/09/28 12:24:35 by dnoll            ###   ########.fr       */
+/*   Updated: 2023/09/28 13:29:09 by dnoll            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <signal.h>
 
-void	killing_func(int pid, unsigned char octet)
+void	encrypt(int pid, unsigned char byte_to_send)
 {
 	int				i;
-	unsigned char	octet_tmp;
+	unsigned char	temp;
 
-	octet_tmp = octet;
-	i = 8;
-	while (i-- > 0)
+	temp = byte_to_send;
+	i = 7;
+	while (i >= 0)
 	{
-		octet_tmp = octet >> i;
-		if (octet_tmp % 2 == 0)
+		temp = byte_to_send >> i;
+		if (temp % 2 == 0)
+		{
 			kill(pid, SIGUSR2);
+		}
 		else
+		{
 			kill(pid, SIGUSR1);
+		}
+		--i;
 		usleep(100);
 	}
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	int		client_id;
-	char	*str_to_send;
+	int		pid;
+	char	*str;
 	int		i;
 
-	if (argc != 3)
+	if (ac != 3)
 	{
-		ft_printf("Los parametros recibidos no son correctos\n");
+		ft_printf("Wrong execution!\n");
+		ft_printf("HINT: ./client [Server PID] [message]\n");
 		return (0);
 	}
-	client_id = ft_atoi(argv[1]);
-	str_to_send = argv[2];
+	str = av[2];
+	pid = ft_atoi(av[1]);
 	i = 0;
-	while (str_to_send[i])
+	while (str[i])
 	{
-		killing_func(client_id, (unsigned char)str_to_send[i]);
+		encrypt(pid, (unsigned char)str[i]);
 		i++;
 	}
-	ft_printf("Se han escrito %i caracteres\n", i);
 	return (0);
 }
