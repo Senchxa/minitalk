@@ -16,7 +16,7 @@
 
 void	decrypt(int signal)
 {
-	static unsigned char	byte_to_recieve;
+	static char	byte_to_recieve;
 	static int				i;
 
 	byte_to_recieve |= (signal == SIGUSR1);
