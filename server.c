@@ -6,10 +6,9 @@
 /*   By: dnoll <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:12:18 by dnoll             #+#    #+#             */
-/*   Updated: 2023/09/28 13:27:44 by dnoll            ###   ########.fr       */
+/*   Updated: 2023/09/29 09:40:29 by dnoll            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft/libft.h"
 #include <signal.h>
@@ -17,7 +16,7 @@
 void	decrypt(int signal)
 {
 	static char	byte_to_recieve;
-	static int				i;
+	static int	i;
 
 	byte_to_recieve |= (signal == SIGUSR1);
 	i++;

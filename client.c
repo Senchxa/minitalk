@@ -6,24 +6,23 @@
 /*   By: dnoll <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:24:30 by dnoll             #+#    #+#             */
-/*   Updated: 2023/09/28 13:29:09 by dnoll            ###   ########.fr       */
+/*   Updated: 2023/09/29 09:34:00 by dnoll            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <signal.h>
 
-/*void	encrypt(int pid, char byte_to_send)
+void	encrypt(int pid, char byte_to_send)
 {
-	int				i;
-	char	temp;
+	int	i;
+	int	bit;
 
-	temp = byte_to_send;
 	i = 7;
 	while (i >= 0)
 	{
-		temp = byte_to_send >> i;
-		if (temp % 2 == 0)
+		bit = (byte_to_send >> i) & 1;
+		if (bit == 0)
 		{
 			kill(pid, SIGUSR2);
 		}
@@ -31,33 +30,10 @@
 		{
 			kill(pid, SIGUSR1);
 		}
-		usleep(420);
+		usleep(350);
 		i--;
 	}
-}*/
-#include <signal.h>
-#include <unistd.h>
-
-void encrypt(int pid, char byte_to_send)
-{
-    int i = 7;
-
-    while (i >= 0)
-    {
-        int bit = (byte_to_send >> i) & 1;
-        if (bit == 0)
-        {
-            kill(pid, SIGUSR2);
-        }
-        else
-        {
-            kill(pid, SIGUSR1);
-        }
-        usleep(350);
-        i--;
-    }
 }
-
 
 int	main(int ac, char **av)
 {
